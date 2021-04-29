@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int nthUglyNumber(int n)
+    {
+        int i5=0;
+        int i2=0;
+        int i3=0;
+        int multi_of_2=2;
+        int multi_of_3=3;
+        int multi_of_5=5;
+        
+        int dp[n];
+        dp[0]=1;
+        int next;
+        
+        for(int i=1;i<n;i++)
+        {
+            next=min(multi_of_2,min(multi_of_3,multi_of_5));
+            dp[i]=next;
+            
+            if (next == multi_of_2) 
+            { 
+                i2 = i2+1; 
+                multi_of_2 = dp[i2]*2; 
+            } 
+            if (next == multi_of_3) 
+            { 
+                i3 = i3+1; 
+                multi_of_3 = dp[i3]*3; 
+            } 
+            if (next == multi_of_5) 
+            { 
+                i5 = i5+1; 
+                multi_of_5 = dp[i5]*5; 
+            }
+        }
+        return dp[n-1];
+        
+    }
+};
